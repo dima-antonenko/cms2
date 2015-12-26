@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cms</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if administrator_signed_in? %>
+    <span>Здравствуйте, <%= current_administrator.email %></span>
+    <%= link_to 'Выйти', destroy_administrator_session_path, :method => :delete %>
+<% else %>
+    <%= link_to 'Войти', new_administrator_session_path %> или <%= link_to 'Зарегистрироваться', new_administrator_registration_path %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>

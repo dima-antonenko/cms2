@@ -1,0 +1,11 @@
+<div id="page_content_inner">
+    <div class="md-card">
+        <div class="md-card-content">
+            <% params.each do |param| %>
+                <%= param %><br/>
+            <% end %>
+
+            ---<br/>
+            <%= Product.where(id: params[:checked_products]).size %>
+</div>
+</div>

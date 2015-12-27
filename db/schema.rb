@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151226134003) do
+ActiveRecord::Schema.define(version: 20151227132703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,8 +94,17 @@ ActiveRecord::Schema.define(version: 20151226134003) do
   add_index "posts", ["seo_title"], name: "index_posts_on_seo_title", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
 
+  create_table "product_attachments", force: :cascade do |t|
+    t.integer  "product_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "product_attachments", ["image"], name: "index_product_attachments_on_image", using: :btree
+  add_index "product_attachments", ["product_id"], name: "index_product_attachments_on_product_id", using: :btree
+
   create_table "product_categories", force: :cascade do |t|
-    t.integer  "product_category_id"
     t.string   "name"
     t.string   "slug"
     t.string   "avatar"
@@ -103,22 +112,21 @@ ActiveRecord::Schema.define(version: 20151226134003) do
     t.string   "seo_title"
     t.string   "seo_description"
     t.string   "seo_keywords"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "banner"
+    t.integer  "product_category_id", default: 0
   end
 
   add_index "product_categories", ["avatar"], name: "index_product_categories_on_avatar", using: :btree
   add_index "product_categories", ["description"], name: "index_product_categories_on_description", using: :btree
   add_index "product_categories", ["name"], name: "index_product_categories_on_name", using: :btree
-  add_index "product_categories", ["product_category_id"], name: "index_product_categories_on_product_category_id", using: :btree
   add_index "product_categories", ["seo_description"], name: "index_product_categories_on_seo_description", using: :btree
   add_index "product_categories", ["seo_keywords"], name: "index_product_categories_on_seo_keywords", using: :btree
   add_index "product_categories", ["seo_title"], name: "index_product_categories_on_seo_title", using: :btree
   add_index "product_categories", ["slug"], name: "index_product_categories_on_slug", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.integer  "product_category_id"
     t.string   "name"
     t.string   "sku"
     t.decimal  "price"
@@ -128,15 +136,16 @@ ActiveRecord::Schema.define(version: 20151226134003) do
     t.string   "seo_title"
     t.string   "seo_description"
     t.string   "seo_keywords"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "active",              default: true
+    t.integer  "product_category_id", default: 0
   end
 
   add_index "products", ["avatar"], name: "index_products_on_avatar", using: :btree
   add_index "products", ["description"], name: "index_products_on_description", using: :btree
   add_index "products", ["name"], name: "index_products_on_name", using: :btree
   add_index "products", ["price"], name: "index_products_on_price", using: :btree
-  add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
   add_index "products", ["seo_description"], name: "index_products_on_seo_description", using: :btree
   add_index "products", ["seo_keywords"], name: "index_products_on_seo_keywords", using: :btree
   add_index "products", ["seo_title"], name: "index_products_on_seo_title", using: :btree

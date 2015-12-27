@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'administrators/dashboard', as: 'administrator_root'
 
-
+  match "/administrators/products/checked" => "administrators/products#checked", via: [:get, :post]
 
   scope module: 'site' do
     resources :products

@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 
 gem 'pg', '~> 0.18.4'
-
+gem 'sqlite3'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -25,14 +25,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'carrierwave'
+gem 'mini_magick'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'seed_dump'
+
+gem 'gon', '~> 5.2', '>= 5.2.3'
+
+gem 'will_paginate', '~> 3.0.6'
+gem 'friendly_id', '~> 5.1.0'
+gem 'roo', '~> 2.1.0'
+gem 'simple-spreadsheet'
+
 
 group :development, :test do
  gem 'byebug'

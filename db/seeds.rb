@@ -12,4 +12,5 @@ Product.create(id: 1, product_category_id: 1, name: "Тестовый товар
 
 10.times do |t|
 	Product.create(product_category_id: 1, name: "для удаления", description: "описание", sku: t)
-end	
+end
+
